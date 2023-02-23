@@ -49,7 +49,7 @@ out vec3 finalColor;														\n\
 																			\n\
 void main()																	\n\
 {																			\n\
-    finalColor = vec3(1.0f, 1.0f, 0.0f);									\n\
+    finalColor = vec3(0.0f, 1.0f, 0.0f);									\n\
 }";
 
 static const char* myFragmentShaderColor = "								\n\
@@ -80,14 +80,29 @@ void myData()
 {
 	float vertices[] = 
 	{
-		// positions         //
-		0.0f,  0.0f, 0.0f,  //0
-		
+		// positions         // x, y, z valores entre -1 a 1
+		-0.6f,  -0.8f, 0.0f,		//0
+		-0.2f,  -0.8f, 0.0f,		//1
+		-0.2f,  0.2f, 0.0f,		//2
+		0.2f,  0.2f, 0.0f,  //3
+		0.2f, 0.4f, 0.0f,		//4
+		-0.2f, 0.4f, 0.0f,		//5
+		-0.2f, 0.6f, 0.0f,		//6
+		0.4f, 0.6f, 0.0f,		//7
+		0.4f, 0.8f, 0.0f,		//8
+		-0.6f, 0.8f, 0.0f,		//9
+
+		-0.6f,  -0.8f, 0.0f,	//10
+		-0.2f,  -0.8f, 0.0f,	//1 11
+		-0.2f,  0.2f, 0.0f,		//2 12
+		-0.2f, 0.4f, 0.0f,		//5 13
+		-0.2f, 0.6f, 0.0f,		//6 14
+		-0.6f, 0.8f, 0.0f,		//9 15
 	};
 
 	unsigned int indices[] =
 	{
-		0, 1, 4, 2, 3
+		0, 1, 4, 2, 3		//fianl color
 	};
 
 	glGenVertexArrays(2, VAO);
@@ -170,6 +185,7 @@ int main()
 
     // glfw window creation
     // --------------------
+	// Obtiene la resolución en pixeles del monitor principal ancho x altura
 	monitors = glfwGetPrimaryMonitor();
 	getResolution();
 
@@ -180,7 +196,7 @@ int main()
         glfwTerminate();
         return -1;
     }
-	glfwSetWindowPos(window, 0, 30);
+	glfwSetWindowPos(window, 0, 30);		//posición al ejecutar la aplicación
     glfwMakeContextCurrent(window);
     glfwSetFramebufferSizeCallback(window, resize);
 
@@ -214,7 +230,18 @@ int main()
 
 		glPointSize(10.0);
 		//glDrawElements(GL_POINTS, 5, GL_UNSIGNED_INT, 0);
-		glDrawArrays(GL_POINTS, 0, 1);
+		//gl_points = puntos, 0 = desde qué elemento comenzará a dibujar, 1 = cuántos elementos va a dibujar
+		//GL_LINES = dibuja lineas independientes, con cada dos vértices
+		//GL_LINE_STRIP = segmentos de línea consecutivos
+		//GL_LINE_LOOP = figuras cerradas
+		//GL_TRIANGLES = crea figuras con borde y relleno
+		//GL_TRIANGLE_STRIP = de 3 a tres triángulos
+		//GL_TRIANGLE_FAN = DIBUJO MUCHAS  lineas
+		// dibujo de letra F
+		glDrawArrays(GL_TRIANGLE_FAN, 6, 4);
+		glDrawArrays(GL_TRIANGLE_FAN, 2, 4);
+		glDrawArrays(GL_TRIANGLE_FAN, 10, 6);
+
 
 
 		glBindVertexArray(0);
@@ -222,7 +249,7 @@ int main()
 
 		//End of Display Section
 
-        // glfw: swap buffers and poll IO events (keys pressed/released, mouse moved etc.)
+        // glfw: swap buffers and poll IO events (keys pressed/released, mouse moved etc.)++
         // -------------------------------------------------------------------------------
         glfwSwapBuffers(window);
         glfwPollEvents();
