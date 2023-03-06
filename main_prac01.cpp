@@ -81,23 +81,86 @@ void myData()
 	float vertices[] = 
 	{
 		// positions         // x, y, z valores entre -1 a 1
-		-0.6f,  -0.8f, 0.0f,		//0
-		-0.2f,  -0.8f, 0.0f,		//1
-		-0.2f,  0.2f, 0.0f,		//2
-		0.2f,  0.2f, 0.0f,  //3
-		0.2f, 0.4f, 0.0f,		//4
-		-0.2f, 0.4f, 0.0f,		//5
-		-0.2f, 0.6f, 0.0f,		//6
-		0.4f, 0.6f, 0.0f,		//7
-		0.4f, 0.8f, 0.0f,		//8
-		-0.6f, 0.8f, 0.0f,		//9
+		-0.15f,0.5f,0.0f,	//0
+		0.15f,0.5f,0.0f,
+		0.0f,-0.7f,0.0f,
 
-		-0.6f,  -0.8f, 0.0f,	//10
-		-0.2f,  -0.8f, 0.0f,	//1 11
-		-0.2f,  0.2f, 0.0f,		//2 12
-		-0.2f, 0.4f, 0.0f,		//5 13
-		-0.2f, 0.6f, 0.0f,		//6 14
-		-0.6f, 0.8f, 0.0f,		//9 15
+		-0.15f,0.5f,0.0f,	//3
+		-0.05f,0.01f,0.0f,
+		-0.3f,0.05f,0.0f,
+			
+		-0.15f,0.5f,0.0f,	//6
+		-0.25f,1.0f,0.0f,
+		-0.3f,0.05f,0.0f,
+
+		-0.4f,-0.3f,0.f,	//9
+		-0.3f,0.05f,0.0f,
+		-0.2f,0.05f,0.0f,
+
+		-0.4f,-0.3f,0.f,	//12
+		-0.2f,0.05f,0.0f,
+		-0.3f,-0.4f,0.0f,
+
+		-0.2f,0.05f,0.0f,	//15
+		-0.3f,-0.4f,0.0f,
+		-0.15f,-0.07f,0.0f,
+
+		-0.3f,-0.4f,0.0f,	//18
+		-0.15f,-0.07f,0.0f,
+		-0.2f,-0.5f,0.0f,
+
+		-0.15f,-0.07f,0.0f,	//21
+		-0.2f,-0.5f,0.0f,
+		-0.05f,-0.05f,0.0f,
+
+		-0.2f,-0.5f,0.0f,	//24
+		-0.05f,-0.05f,0.0f,
+		0.0f,-0.7f,0.0f,
+			
+		-0.2f,-0.5f,0.0f,	//27
+		0.0f,-0.7f,0.0f,
+		-0.16f,-0.7f,0.0f,
+
+		0.15f,0.5f,0.0f,
+		0.05f,0.01f,0.0f,
+		0.3f,0.05f,0.0f,
+
+		0.15f,0.5f,0.0f,
+		0.25f,1.0f,0.0f,
+		0.3f,0.05f,0.0f,
+
+		0.4f,-0.3f,0.f,
+		0.3f,0.05f,0.0f,
+		0.2f,0.05f,0.0f,
+
+		0.4f,-0.3f,0.f,
+		0.2f,0.05f,0.0f,
+		0.3f,-0.4f,0.0f,
+
+		0.2f,0.05f,0.0f,
+		0.3f,-0.4f,0.0f,
+		0.15f,-0.07f,0.0f,
+
+		0.3f,-0.4f,0.0f,
+		0.15f,-0.07f,0.0f,
+		0.2f,-0.5f,0.0f,
+
+		0.15f,-0.07f,0.0f,
+		0.2f,-0.5f,0.0f,
+		0.05f,-0.05f,0.0f,
+
+		0.2f,-0.5f,0.0f,
+		0.05f,-0.05f,0.0f,
+		0.0f,-0.7f,0.0f,
+
+		0.2f,-0.5f,0.0f,	//27
+		0.0f,-0.7f,0.0f,
+		0.16f,-0.7f,0.0f,
+
+		-0.16f,-0.7f,0.0f,
+		0.16f,-0.7f,0.0f,
+		0.0f,-0.75f,0.0f,
+
 	};
 
 	unsigned int indices[] =
@@ -237,12 +300,27 @@ int main()
 		//GL_TRIANGLES = crea figuras con borde y relleno
 		//GL_TRIANGLE_STRIP = de 3 a tres triángulos
 		//GL_TRIANGLE_FAN = DIBUJO MUCHAS  lineas
-		// dibujo de letra F
-		glDrawArrays(GL_TRIANGLE_FAN, 6, 4);
-		glDrawArrays(GL_TRIANGLE_FAN, 2, 4);
-		glDrawArrays(GL_TRIANGLE_FAN, 10, 6);
-
-
+		
+		glDrawArrays(GL_TRIANGLE_FAN, 0, 3);
+		glDrawArrays(GL_TRIANGLE_FAN, 3, 3);
+		glDrawArrays(GL_TRIANGLE_FAN, 6, 3);
+		glDrawArrays(GL_TRIANGLE_FAN, 9, 3);
+		glDrawArrays(GL_TRIANGLE_FAN, 12, 3);
+		glDrawArrays(GL_TRIANGLE_FAN, 15, 3);
+		glDrawArrays(GL_TRIANGLE_FAN, 18, 3);
+		glDrawArrays(GL_TRIANGLE_FAN, 21, 3);
+		glDrawArrays(GL_TRIANGLE_FAN, 24, 3);
+		glDrawArrays(GL_TRIANGLE_FAN, 27, 3);
+		glDrawArrays(GL_TRIANGLE_FAN, 30, 3);
+		glDrawArrays(GL_TRIANGLE_FAN, 33, 3);
+		glDrawArrays(GL_TRIANGLE_FAN, 36, 3);
+		glDrawArrays(GL_TRIANGLE_FAN, 39, 3);
+		glDrawArrays(GL_TRIANGLE_FAN, 42, 3);
+		glDrawArrays(GL_TRIANGLE_FAN, 45, 3);
+		glDrawArrays(GL_TRIANGLE_FAN, 48, 3);
+		glDrawArrays(GL_TRIANGLE_FAN, 51, 3);
+		glDrawArrays(GL_TRIANGLE_FAN, 54, 3);
+		glDrawArrays(GL_TRIANGLE_FAN, 57, 3);
 
 		glBindVertexArray(0);
 		glUseProgram(0);
