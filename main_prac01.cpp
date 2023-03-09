@@ -27,8 +27,7 @@ static const char* myVertexShader = "										\n\
 #version 330 core															\n\
 																			\n\
 layout (location = 0) in vec3 aPos;											\n\
-layout (location = 1) in vec3 aColor;										\n\
-out vec3 ourColor;															\n\
+																			\n\
 void main()																	\n\
 {																			\n\
     gl_Position = vec4(aPos.x, aPos.y, aPos.z, 1.0);						\n\
@@ -48,7 +47,7 @@ void main()																	\n\
 }";
 
 // Fragment Shader
-static const char* myFragmentShaderYellow = "									\n\
+static const char* myFragmentShaderYellow = "								\n\
 #version 330																\n\
 in vec3 ourColor;																			\n\
 out vec3 finalColor;														\n\
