@@ -1,5 +1,5 @@
 /*---------------------------------------------------------*/
-/* ----------------   Práctica 1 --------------------------*/
+/* ----------------   Práctica 2 --------------------------*/
 /*-----------------    2023-2   ---------------------------*/
 /*------------- Tania Lizeth Peñaloza Lugo 316013929 ---------------*/
 #include <glew.h>
@@ -23,10 +23,12 @@ static const char* myVertexShader = "										\n\
 #version 330 core															\n\
 																			\n\
 layout (location = 0) in vec3 aPos;											\n\
-																			\n\
+layout (location = 1) in vec3 aColor;										\n\
+out vec3 ourColor;																			\n\
 void main()																	\n\
 {																			\n\
-    gl_Position = vec4(aPos.x, aPos.y, aPos.z, 1.0);							\n\
+    gl_Position = vec4(aPos.x, aPos.y, aPos.z, 1.0);						\n\
+	ourColor = aColor;														\n\
 }";
 
 static const char* myVertexShaderColor = "									\n\
@@ -42,14 +44,14 @@ void main()																	\n\
 }";
 
 // Fragment Shader
-static const char* myFragmentShaderYellow = "									\n\
+static const char* myFragmentShaderYellow = "								\n\
 #version 330																\n\
-																			\n\
+in vec3 ourColor;															\n\
 out vec3 finalColor;														\n\
 																			\n\
 void main()																	\n\
 {																			\n\
-    finalColor = vec3(0.0f, 1.0f, 0.0f);									\n\
+    finalColor = vec3(ourColor.x, ourColor.y, ourColor.z);					\n\
 }";
 
 static const char* myFragmentShaderColor = "								\n\
@@ -165,7 +167,7 @@ void myData()
 
 	unsigned int indices[] =
 	{
-		0, 1, 4, 2, 3		//fianl color
+		0, 1, 4, 2, 3		
 	};
 
 	glGenVertexArrays(2, VAO);
@@ -182,7 +184,9 @@ void myData()
 	glEnableVertexAttribArray(0);
 	// color attribute
 	//glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)(3 * sizeof(float)));
-	//glEnableVertexAttribArray(1);
+	//glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 7 * sizeof(float), (void*)(9 * sizeof(float)));
+
+	glEnableVertexAttribArray(1);
 
 	//Para trabajar con indices (Element Buffer Object)
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO[0]);
@@ -301,6 +305,7 @@ int main()
 		//GL_TRIANGLE_STRIP = de 3 a tres triángulos
 		//GL_TRIANGLE_FAN = DIBUJO MUCHAS  lineas
 		
+		/*
 		glDrawArrays(GL_TRIANGLE_FAN, 0, 3);
 		glDrawArrays(GL_TRIANGLE_FAN, 3, 3);
 		glDrawArrays(GL_TRIANGLE_FAN, 6, 3);
@@ -321,6 +326,7 @@ int main()
 		glDrawArrays(GL_TRIANGLE_FAN, 51, 3);
 		glDrawArrays(GL_TRIANGLE_FAN, 54, 3);
 		glDrawArrays(GL_TRIANGLE_FAN, 57, 3);
+		*/
 
 		glBindVertexArray(0);
 		glUseProgram(0);
