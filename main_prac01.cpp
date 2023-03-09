@@ -1,5 +1,5 @@
 /*---------------------------------------------------------*/
-/* ----------------   Práctica 1 --------------------------*/
+/* ----------------   Práctica 2 --------------------------*/
 /*-----------------    2023-2   ---------------------------*/
 /*------------- Tania Lizeth Peñaloza Lugo 316013929 ---------------*/
 #include <glew.h>
@@ -19,14 +19,20 @@ GLFWmonitor *monitors;
 GLuint VBO[2], VAO[2], EBO[2];
 GLuint shaderProgramYellow, shaderProgramColor;
 
+//shader de vértices:
+//primera etapa que recibe los datos que vamos a utilizar, se encarga de formar la geometría
+//entrada en 0, recibe 3 datos y la guarda en aPos
+//los 3 datos recibidos los guarda en un vector de 4 (el 4to es 1)                           
 static const char* myVertexShader = "										\n\
 #version 330 core															\n\
 																			\n\
 layout (location = 0) in vec3 aPos;											\n\
-																			\n\
+layout (location = 1) in vec3 aColor;										\n\
+out vec3 ourColor;															\n\
 void main()																	\n\
 {																			\n\
-    gl_Position = vec4(aPos.x, aPos.y, aPos.z, 1.0);							\n\
+    gl_Position = vec4(aPos.x, aPos.y, aPos.z, 1.0);						\n\
+	ourColor = aColor;														\n\
 }";
 
 static const char* myVertexShaderColor = "									\n\
@@ -44,12 +50,12 @@ void main()																	\n\
 // Fragment Shader
 static const char* myFragmentShaderYellow = "									\n\
 #version 330																\n\
-																			\n\
+in vec3 ourColor;																			\n\
 out vec3 finalColor;														\n\
 																			\n\
 void main()																	\n\
 {																			\n\
-    finalColor = vec3(0.0f, 1.0f, 0.0f);									\n\
+    finalColor = vec3(ourColor.x, ourColor.y, ourColor.z);					\n\
 }";
 
 static const char* myFragmentShaderColor = "								\n\
@@ -81,45 +87,59 @@ void myData()
 	float vertices[] = 
 	{
 		// positions         // x, y, z valores entre -1 a 1
-		-0.6f,  -0.8f, 0.0f,		//0
-		-0.2f,  -0.8f, 0.0f,		//1
-		-0.2f,  0.2f, 0.0f,		//2
-		0.2f,  0.2f, 0.0f,  //3
-		0.2f, 0.4f, 0.0f,		//4
-		-0.2f, 0.4f, 0.0f,		//5
-		-0.2f, 0.6f, 0.0f,		//6
-		0.4f, 0.6f, 0.0f,		//7
-		0.4f, 0.8f, 0.0f,		//8
-		-0.6f, 0.8f, 0.0f,		//9
+		//verde
+		-0.6f,  -0.8f, 0.0f,	0.0f, 1.0f, 0.0f,//0
+		-0.2f,  -0.8f, 0.0f,	0.0f, 1.0f, 0.0f, //1
+		-0.2f,  0.2f, 0.0f,		0.0f, 1.0f, 0.0f,//2
 
-		-0.6f,  -0.8f, 0.0f,	//10
-		-0.2f,  -0.8f, 0.0f,	//1 11
-		-0.2f,  0.2f, 0.0f,		//2 12
-		-0.2f, 0.4f, 0.0f,		//5 13
-		-0.2f, 0.6f, 0.0f,		//6 14
-		-0.6f, 0.8f, 0.0f,		//9 15
+		//amarillo
+		0.2f,  0.2f, 0.0f,		1.0f, 1.0f, 0.0f,//3
+		0.2f, 0.4f, 0.0f,		1.0f, 1.0f, 0.0f,//4
+		-0.2f, 0.4f, 0.0f,		1.0f, 1.0f, 0.0f,//5
+		-0.2f, 0.6f, 0.0f,		1.0f, 1.0f, 0.0f,//6
+		0.4f, 0.6f, 0.0f,		1.0f, 1.0f, 0.0f,//7
+
+		//rojo
+		0.4f, 0.8f, 0.0f,		1.0f, 0.0f, 0.0f,//8
+		-0.6f, 0.8f, 0.0f,		1.0f, 0.0f, 0.0f,//9
+
+		-0.2f,  -0.8f, 0.0f,	1.0f, 1.0f, 0.0f, //1 10 amarillo
+		-0.2f, 0.4f, 0.0f,		1.0f, 1.0f, 0.0f,//5 11 amarillo
+		-0.6f, 0.8f, 0.0f,		1.0f, 1.0f, 0.0f,//9 12 amarillo
+		-0.2f, 0.4f, 0.0f,		1.0f, 0.0f, 0.0f,//5 13 rojo
+		-0.2f, 0.6f, 0.0f,		1.0f, 0.0f, 0.0f,//6 14 rojo
+		-0.6f,  -0.8f, 0.0f,	1.0f, 0.0f, 0.0f,//0 15 rojo
+
 	};
 
 	unsigned int indices[] =
 	{
-		0, 1, 4, 2, 3		//fianl color
+		6,8,9,	//rojo
+		15,13,14, //rojo
+		9,14,15, //rojo
+		0,1,5, //verde
+		6,7,8, //amarillos
+		2,3,5,
+		5,4,3,
 	};
 
-	glGenVertexArrays(2, VAO);
-	glGenBuffers(2, VBO);
-	glGenBuffers(2, EBO);
+	glGenVertexArrays(2, VAO);	//contenedores de información en memoria de video
+	glGenBuffers(2, VBO);	//espacio para operaciones
+	glGenBuffers(2, EBO);	//
 
 
 
 	glBindVertexArray(VAO[0]);
 	glBindBuffer(GL_ARRAY_BUFFER, VBO[0]);
-	glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);//separación
 	// position attribute
-	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, (void*)0);
+	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)0);
 	glEnableVertexAttribArray(0);
 	// color attribute
 	//glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)(3 * sizeof(float)));
-	//glEnableVertexAttribArray(1);
+	//glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 7 * sizeof(float), (void*)(9 * sizeof(float)));
+
+	glEnableVertexAttribArray(1);
 
 	//Para trabajar con indices (Element Buffer Object)
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO[0]);
@@ -229,7 +249,8 @@ int main()
 		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO[0]);
 
 		glPointSize(10.0);
-		//glDrawElements(GL_POINTS, 5, GL_UNSIGNED_INT, 0);
+		//OPCION DE DIBUJO A OCUPAR, CUÁNTOS ÍNDICES VALORES, ENTEROS SIN SIGNO, INICIA DESDE EL VALOR 0
+		glDrawElements(GL_TRIANGLES, 21, GL_UNSIGNED_INT, 0); 
 		//gl_points = puntos, 0 = desde qué elemento comenzará a dibujar, 1 = cuántos elementos va a dibujar
 		//GL_LINES = dibuja lineas independientes, con cada dos vértices
 		//GL_LINE_STRIP = segmentos de línea consecutivos
@@ -238,9 +259,9 @@ int main()
 		//GL_TRIANGLE_STRIP = de 3 a tres triángulos
 		//GL_TRIANGLE_FAN = DIBUJO MUCHAS  lineas
 		// dibujo de letra F
-		glDrawArrays(GL_TRIANGLE_FAN, 6, 4);
-		glDrawArrays(GL_TRIANGLE_FAN, 2, 4);
-		glDrawArrays(GL_TRIANGLE_FAN, 10, 6);
+		//glDrawArrays(GL_TRIANGLE_FAN, 6, 4);
+		//glDrawArrays(GL_TRIANGLE_FAN, 2, 4);
+		//glDrawArrays(GL_TRIANGLE_FAN, 10, 6);
 
 
 
