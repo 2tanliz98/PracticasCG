@@ -14,7 +14,7 @@
 
 #include <iostream>
 
-void resize(GLFWwindow* window, int width, int height);
+void resize(GLFWwindow * window, int width, int height);
 void my_input(GLFWwindow* window);
 
 // settings
@@ -30,10 +30,10 @@ void getResolution(void);
 
 //For Keyboard
 float	movX = 0.0f,
-		movY = 0.0f,
-		movZ = -6.0f,
-		angulo = 0.0f;
-	
+movY = 0.0f,
+movZ = -6.0f,
+angulo = 0.0f;
+
 
 
 void getResolution()
@@ -244,37 +244,40 @@ int main()
 		myShader.setMat4("model", modelOp);
 		myShader.setVec3("miColor", glm::vec3(0.0f, 0.0f, 0.0f));
 		glDrawArrays(GL_TRIANGLES, 0, 36); //My Cube
-
-		for (int i = 0; i < 4; i++) {
+		int i;
+		//1
+		for (i = 0; i < 4; i++) {
 			modelOp = glm::translate(modelOp, glm::vec3(1.0f, 0.0f, 0.0f));
 			myShader.setMat4("model", modelOp);
 			glDrawArrays(GL_TRIANGLES, 0, 36);
 		}
-
+		// 2 
+		//negros
 		modelOp = glm::translate(glm::mat4(1.0f), glm::vec3(-2.0f, -1.0f, 0.0f));
 		myShader.setMat4("model", modelOp);
+		myShader.setVec3("miColor", glm::vec3(0.0f, 0.0f, 0.0f));
 		glDrawArrays(GL_TRIANGLES, 0, 36);
-		modelOp = glm::translate(modelOp, glm::vec3(1.0f, .0f, 0.0f));
-		myShader.setMat4("model", modelOp);
+		modelOp = glm::translate(glm::mat4(1.0f), glm::vec3(-1.0f, -1.0f, 0.0f));
+		myShader.setMat4("model", modelOp); 
 		glDrawArrays(GL_TRIANGLES, 0, 36);
-
-		for (int i = 0; i < 5; i++) {
+		for (i = 0; i < 5; i++) { //amarillos
 			modelOp = glm::translate(modelOp, glm::vec3(1.0f, 0.0f, 0.0f));
 			myShader.setMat4("model", modelOp);
 			myShader.setVec3("miColor", glm::vec3(1.0f, 1.0f, 0.0f));
 			glDrawArrays(GL_TRIANGLES, 0, 36);
 		}
-		for (int i = 0; i < 2; i++) {
+		for (i = 0; i < 2; i++) { //negros
 			modelOp = glm::translate(modelOp, glm::vec3(1.0f, 0.0f, 0.0f));
 			myShader.setMat4("model", modelOp);
 			myShader.setVec3("miColor", glm::vec3(0.0f, 0.0f, 0.0f));
 			glDrawArrays(GL_TRIANGLES, 0, 36);
 		}
 
+		///3
 		modelOp = glm::translate(glm::mat4(1.0f), glm::vec3(-3.0f, -2.0f, 0.0f));
 		myShader.setMat4("model", modelOp);
 		glDrawArrays(GL_TRIANGLES, 0, 36);
-		
+
 		for (int i = 0; i < 9; i++) {
 			modelOp = glm::translate(modelOp, glm::vec3(1.0f, 0.0f, 0.0f));
 			myShader.setMat4("model", modelOp);
@@ -286,6 +289,358 @@ int main()
 		myShader.setMat4("model", modelOp);
 		myShader.setVec3("miColor", glm::vec3(0.0f, 0.0f, 0.0f));
 		glDrawArrays(GL_TRIANGLES, 0, 36);
+
+		// 4
+		modelOp = glm::translate(glm::mat4(1.0f), glm::vec3(-4.0f, -3.0f, 0.0f));
+		myShader.setMat4("model", modelOp);
+		myShader.setVec3("miColor", glm::vec3(0.0f, 0.0f, 0.0f));  
+		glDrawArrays(GL_TRIANGLES, 0, 36);
+
+		for (i = 0; i < 11; i++) {  //amarillos
+			modelOp = glm::translate(modelOp, glm::vec3(1.0f, 0.0f, 0.0f));
+			myShader.setMat4("model", modelOp);
+			myShader.setVec3("miColor", glm::vec3(1.0f, 1.0f, 0.0f));
+			glDrawArrays(GL_TRIANGLES, 0, 36);
+		}
+		modelOp = glm::translate(modelOp, glm::vec3(1.0f, 0.0f, 0.0f));
+		myShader.setMat4("model", modelOp);
+		myShader.setVec3("miColor", glm::vec3(0.0f, 0.0f, 0.0f));  
+		glDrawArrays(GL_TRIANGLES, 0, 36);
+
+		/// 5 negro inicio
+		modelOp = glm::translate(glm::mat4(1.0f), glm::vec3(-5.0f, -4.0f, 0.0f));
+		myShader.setMat4("model", modelOp);
+		myShader.setVec3("miColor", glm::vec3(0.0f, 0.0f, 0.0f)); //negro
+		glDrawArrays(GL_TRIANGLES, 0, 36);
+		//amarillos linea 5
+		for (i = 0; i < 13; i++) {
+			modelOp = glm::translate(modelOp, glm::vec3(1.0f, 0.0f, 0.0f));
+			myShader.setMat4("model", modelOp);
+			myShader.setVec3("miColor", glm::vec3(1.0f, 1.0f, 0.0f));
+			glDrawArrays(GL_TRIANGLES, 0, 36);
+		}
+		//5 fin
+		modelOp = glm::translate(modelOp, glm::vec3(1.0f, 0.0f, 0.0f));
+		myShader.setMat4("model", modelOp);
+		myShader.setVec3("miColor", glm::vec3(0.0f, 0.0f, 0.0f)); //negro
+		glDrawArrays(GL_TRIANGLES, 0, 36);
+
+		//6
+		modelOp = glm::translate(glm::mat4(1.0f), glm::vec3(-5.0f, -5.0f, 0.0f));
+		myShader.setMat4("model", modelOp);
+		myShader.setVec3("miColor", glm::vec3(0.0f, 0.0f, 0.0f)); //negro
+		glDrawArrays(GL_TRIANGLES, 0, 36);
+
+		modelOp = glm::translate(modelOp, glm::vec3(1.0f, 0.0f, 0.0f));
+		myShader.setMat4("model", modelOp);
+		myShader.setVec3("miColor", glm::vec3(1.0f, 1.0f, 0.0f));  //amarillo
+		glDrawArrays(GL_TRIANGLES, 0, 36);
+		for (int j = 0; j < 4; j++) {
+			for (i = 0; i < 2; i++) {   //rojo
+				modelOp = glm::translate(modelOp, glm::vec3(1.0f, 0.0f, 0.0f));
+				myShader.setMat4("model", modelOp);
+				myShader.setVec3("miColor", glm::vec3(1.0f, 0.0f, 0.0f));
+				glDrawArrays(GL_TRIANGLES, 0, 36);
+			}
+			modelOp = glm::translate(modelOp, glm::vec3(1.0f, 0.0f, 0.0f));
+			myShader.setMat4("model", modelOp);
+			myShader.setVec3("miColor", glm::vec3(1.0f, 1.0f, 0.0f));  //amarillo
+			glDrawArrays(GL_TRIANGLES, 0, 36);
+		}
+
+		modelOp = glm::translate(modelOp, glm::vec3(1.0f, 0.0f, 0.0f));
+		myShader.setMat4("model", modelOp);
+		myShader.setVec3("miColor", glm::vec3(0.0f, 0.0f, 0.0f)); //negro
+		glDrawArrays(GL_TRIANGLES, 0, 36);
+
+		//7 a 10
+		modelOp = glm::translate(glm::mat4(1.0f), glm::vec3(-6.0f, -6.0f, 0.0f));
+		myShader.setMat4("model", modelOp);
+		myShader.setVec3("miColor", glm::vec3(0.0f, 0.0f, 0.0f)); //negro inicio
+		glDrawArrays(GL_TRIANGLES, 0, 36);
+		for (i = 0; i < 4; i++) {
+			modelOp = glm::translate(modelOp, glm::vec3(0.0f, -1.0f, 0.0f));
+			myShader.setMat4("model", modelOp);
+			glDrawArrays(GL_TRIANGLES, 0, 36);
+		}
+
+		modelOp = glm::translate(glm::mat4(1.0f), glm::vec3(10.0f, -6.0f, 0.0f));
+		myShader.setMat4("model", modelOp);
+		glDrawArrays(GL_TRIANGLES, 0, 36);
+		for (i = 0; i < 4; i++) {
+			modelOp = glm::translate(modelOp, glm::vec3(0.0f, -1.0f, 0.0f));
+			myShader.setMat4("model", modelOp);
+			glDrawArrays(GL_TRIANGLES, 0, 36);
+		}
+		
+		//7
+		modelOp = glm::translate(glm::mat4(1.0f), glm::vec3(-5.0f, -6.0f, 0.0f));
+		myShader.setMat4("model", modelOp);
+		myShader.setVec3("miColor", glm::vec3(1.0f, 1.0f, 0.0f));  //amarillo
+		glDrawArrays(GL_TRIANGLES, 0, 36);
+		modelOp = glm::translate(modelOp, glm::vec3(1.0f, 0.0f, 0.0f));
+		myShader.setMat4("model", modelOp);
+		glDrawArrays(GL_TRIANGLES, 0, 36);
+		for (i = 0; i < 5; i++) {
+			modelOp = glm::translate(modelOp, glm::vec3(1.0f, 0.0f, 0.0f));
+			myShader.setMat4("model", modelOp);
+			myShader.setVec3("miColor", glm::vec3(1.0f, 0.0f, 0.0f)); //rojo
+			glDrawArrays(GL_TRIANGLES, 0, 36);
+		}
+		modelOp = glm::translate(modelOp, glm::vec3(1.0f, 0.0f, 0.0f));
+		myShader.setMat4("model", modelOp);
+		myShader.setVec3("miColor", glm::vec3(1.0f, 1.0f, 0.0f));  //amarillo
+		glDrawArrays(GL_TRIANGLES, 0, 36);
+		for (i = 0; i < 5; i++) {
+			modelOp = glm::translate(modelOp, glm::vec3(1.0f, 0.0f, 0.0f));
+			myShader.setMat4("model", modelOp);
+			myShader.setVec3("miColor", glm::vec3(1.0f, 0.0f, 0.0f)); //rojo
+			glDrawArrays(GL_TRIANGLES, 0, 36);
+		}
+		for (i = 0; i < 2; i++) {
+			modelOp = glm::translate(modelOp, glm::vec3(1.0f, 0.0f, 0.0f));
+			myShader.setMat4("model", modelOp);
+			myShader.setVec3("miColor", glm::vec3(1.0f, 1.0f, 0.0f));  //amarillo
+			glDrawArrays(GL_TRIANGLES, 0, 36);
+		}
+
+		//8
+		modelOp = glm::translate(glm::mat4(1.0f), glm::vec3(-5.0f, -7.0f, 0.0f));
+		myShader.setMat4("model", modelOp);
+		myShader.setVec3("miColor", glm::vec3(1.0f, 1.0f, 0.0f));  //amarillo
+		glDrawArrays(GL_TRIANGLES, 0, 36);
+		for (i = 0; i < 2; i++) {
+			modelOp = glm::translate(modelOp, glm::vec3(1.0f, 0.0f, 0.0f));
+			myShader.setMat4("model", modelOp);
+			myShader.setVec3("miColor", glm::vec3(1.0f, 1.0f, 0.0f));  //amarillo
+			glDrawArrays(GL_TRIANGLES, 0, 36);
+		}
+		for (i = 0; i < 3; i++) {
+			modelOp = glm::translate(modelOp, glm::vec3(1.0f, 0.0f, 0.0f));
+			myShader.setMat4("model", modelOp);
+			myShader.setVec3("miColor", glm::vec3(1.0f, 0.0f, 0.0f)); //rojo
+			glDrawArrays(GL_TRIANGLES, 0, 36);
+		}
+		for (i = 0; i < 3; i++) {
+			modelOp = glm::translate(modelOp, glm::vec3(1.0f, 0.0f, 0.0f));
+			myShader.setMat4("model", modelOp);
+			myShader.setVec3("miColor", glm::vec3(1.0f, 1.0f, 0.0f)); //amarillo
+			glDrawArrays(GL_TRIANGLES, 0, 36);
+		}
+		for (i = 0; i < 3; i++) {
+			modelOp = glm::translate(modelOp, glm::vec3(1.0f, 0.0f, 0.0f));
+			myShader.setMat4("model", modelOp);
+			myShader.setVec3("miColor", glm::vec3(1.0f, 0.0f, 0.0f)); //rojo
+			glDrawArrays(GL_TRIANGLES, 0, 36);
+		}
+		for (i = 0; i < 3; i++) {
+			modelOp = glm::translate(modelOp, glm::vec3(1.0f, 0.0f, 0.0f));
+			myShader.setMat4("model", modelOp);
+			myShader.setVec3("miColor", glm::vec3(1.0f, 1.0f, 0.0f)); //amarillo
+			glDrawArrays(GL_TRIANGLES, 0, 36);
+		}
+
+		//8
+		modelOp = glm::translate(glm::mat4(1.0f), glm::vec3(-5.0f, -8.0f, 0.0f));
+		myShader.setMat4("model", modelOp);
+		myShader.setVec3("miColor", glm::vec3(1.0f, 1.0f, 0.0f));  //amarillo
+		glDrawArrays(GL_TRIANGLES, 0, 36);
+		for (i = 0; i < 3; i++) {
+			modelOp = glm::translate(modelOp, glm::vec3(1.0f, 0.0f, 0.0f));
+			myShader.setMat4("model", modelOp);
+			myShader.setVec3("miColor", glm::vec3(1.0f, 1.0f, 0.0f)); //amarillo
+			glDrawArrays(GL_TRIANGLES, 0, 36);
+		}
+		modelOp = glm::translate(modelOp, glm::vec3(1.0f, 0.0f, 0.0f));
+		myShader.setMat4("model", modelOp);
+		myShader.setVec3("miColor", glm::vec3(1.0f, 0.0f, 0.0f)); //rojo
+		glDrawArrays(GL_TRIANGLES, 0, 36);
+		for (i = 0; i < 5; i++) {
+			modelOp = glm::translate(modelOp, glm::vec3(1.0f, 0.0f, 0.0f));
+			myShader.setMat4("model", modelOp);
+			myShader.setVec3("miColor", glm::vec3(1.0f, 1.0f, 0.0f)); //amarillo
+			glDrawArrays(GL_TRIANGLES, 0, 36);
+		}
+		modelOp = glm::translate(modelOp, glm::vec3(1.0f, 0.0f, 0.0f));
+		myShader.setMat4("model", modelOp);
+		myShader.setVec3("miColor", glm::vec3(1.0f, 0.0f, 0.0f)); //rojo
+		glDrawArrays(GL_TRIANGLES, 0, 36);
+		for (i = 0; i < 4; i++) {
+			modelOp = glm::translate(modelOp, glm::vec3(1.0f, 0.0f, 0.0f));
+			myShader.setMat4("model", modelOp);
+			myShader.setVec3("miColor", glm::vec3(1.0f, 1.0f, 0.0f)); //amarillo
+			glDrawArrays(GL_TRIANGLES, 0, 36);
+		}
+
+		//9
+		modelOp = glm::translate(glm::mat4(1.0f), glm::vec3(-5.0f, -9.0f, 0.0f));
+		myShader.setMat4("model", modelOp);
+		myShader.setVec3("miColor", glm::vec3(1.0f, 1.0f, 0.0f));  //amarillo
+		glDrawArrays(GL_TRIANGLES, 0, 36);
+		for (i = 0; i < 14; i++) {
+			modelOp = glm::translate(modelOp, glm::vec3(1.0f, 0.0f, 0.0f));
+			myShader.setMat4("model", modelOp);
+			myShader.setVec3("miColor", glm::vec3(1.0f, 1.0f, 0.0f)); //amarillo
+			glDrawArrays(GL_TRIANGLES, 0, 36);
+		}
+
+		//10
+		modelOp = glm::translate(glm::mat4(1.0f), glm::vec3(-5.0f, -10.0f, 0.0f));
+		myShader.setMat4("model", modelOp);
+		myShader.setVec3("miColor", glm::vec3(1.0f, 1.0f, 0.0f));  //amarillo
+		glDrawArrays(GL_TRIANGLES, 0, 36);
+		modelOp = glm::translate(glm::mat4(1.0f), glm::vec3(-4.0f, -10.0f, 0.0f));
+		myShader.setMat4("model", modelOp);
+		myShader.setVec3("miColor", glm::vec3(1.0f, 1.0f, 0.0f));  //amarillo
+		glDrawArrays(GL_TRIANGLES, 0, 36);
+
+		for (i = 0; i < 11; i++) {   //negro
+			modelOp = glm::translate(modelOp, glm::vec3(1.0f, 0.0f, 0.0f));
+			myShader.setMat4("model", modelOp);
+			myShader.setVec3("miColor", glm::vec3(0.0f, 0.0f, 0.0f));
+			glDrawArrays(GL_TRIANGLES, 0, 36);
+		}
+		for (i = 0; i < 2; i++) {   //amarillo
+			modelOp = glm::translate(modelOp, glm::vec3(1.0f, 0.0f, 0.0f));
+			myShader.setMat4("model", modelOp);
+			myShader.setVec3("miColor", glm::vec3(1.0f, 1.0f, 0.0f));
+			glDrawArrays(GL_TRIANGLES, 0, 36);
+		}
+
+		//11
+		modelOp = glm::translate(glm::mat4(1.0f), glm::vec3(-5.0f, -11.0f, 0.0f));
+		myShader.setMat4("model", modelOp);
+		myShader.setVec3("miColor", glm::vec3(0.0f, 0.0f, 0.0f)); //negro
+		glDrawArrays(GL_TRIANGLES, 0, 36);
+		for (i = 0; i < 2; i++) {
+			modelOp = glm::translate(modelOp, glm::vec3(1.0f, 0.0f, 0.0f));
+			myShader.setMat4("model", modelOp);
+			myShader.setVec3("miColor", glm::vec3(1.0f, 1.0f, 0.0f)); //amarillo
+			glDrawArrays(GL_TRIANGLES, 0, 36);
+		}
+		for (i = 0; i < 9  ; i++) {
+			modelOp = glm::translate(modelOp, glm::vec3(1.0f, 0.0f, 0.0f));
+			myShader.setMat4("model", modelOp);
+			myShader.setVec3("miColor", glm::vec3(0.0f, 0.0f, 0.0f)); //negro
+			glDrawArrays(GL_TRIANGLES, 0, 36);
+		}
+		for (i = 0; i < 2; i++) {
+			modelOp = glm::translate(modelOp, glm::vec3(1.0f, 0.0f, 0.0f));
+			myShader.setMat4("model", modelOp);
+			myShader.setVec3("miColor", glm::vec3(1.0f, 1.0f, 0.0f)); //amarillo
+			glDrawArrays(GL_TRIANGLES, 0, 36);
+		}
+		modelOp = glm::translate(modelOp, glm::vec3(1.0f, 0.0f, 0.0f));
+		myShader.setMat4("model", modelOp);
+		myShader.setVec3("miColor", glm::vec3(0.0f, 0.0f, 0.0f)); //negro
+		glDrawArrays(GL_TRIANGLES, 0, 36);
+
+		//12
+		modelOp = glm::translate(glm::mat4(1.0f), glm::vec3(-5.0f, -12.0f, 0.0f));
+		myShader.setMat4("model", modelOp);
+		myShader.setVec3("miColor", glm::vec3(0.0f, 0.0f, 0.0f)); //negro
+		glDrawArrays(GL_TRIANGLES, 0, 36);
+		for (i = 0; i < 3; i++) {
+			modelOp = glm::translate(modelOp, glm::vec3(1.0f, 0.0f, 0.0f));
+			myShader.setMat4("model", modelOp);
+			myShader.setVec3("miColor", glm::vec3(1.0f, 1.0f, 0.0f)); //amarillo
+			glDrawArrays(GL_TRIANGLES, 0, 36);
+		}
+		for (i = 0; i < 7; i++) {
+			modelOp = glm::translate(modelOp, glm::vec3(1.0f, 0.0f, 0.0f));
+			myShader.setMat4("model", modelOp);
+			myShader.setVec3("miColor", glm::vec3(0.0f, 0.0f, 0.0f)); //negro
+			glDrawArrays(GL_TRIANGLES, 0, 36);
+		}
+		for (i = 0; i < 3; i++) {
+			modelOp = glm::translate(modelOp, glm::vec3(1.0f, 0.0f, 0.0f));
+			myShader.setMat4("model", modelOp);
+			myShader.setVec3("miColor", glm::vec3(1.0f, 1.0f, 0.0f)); //amarillo
+			glDrawArrays(GL_TRIANGLES, 0, 36);
+		}
+		modelOp = glm::translate(glm::mat4(1.0f), glm::vec3(9.0f, -12.0f, 0.0f));
+		myShader.setMat4("model", modelOp);
+		myShader.setVec3("miColor", glm::vec3(0.0f, 0.0f, 0.0f)); //negro
+		glDrawArrays(GL_TRIANGLES, 0, 36);
+
+		//13
+		modelOp = glm::translate(glm::mat4(1.0f), glm::vec3(-4.0f, -13.0f, 0.0f));
+		myShader.setMat4("model", modelOp);
+		myShader.setVec3("miColor", glm::vec3(0.0f, 0.0f, 0.0f)); //negro
+		glDrawArrays(GL_TRIANGLES, 0, 36);
+		for (i = 0; i < 3; i++) {
+			modelOp = glm::translate(modelOp, glm::vec3(1.0f, 0.0f, 0.0f));
+			myShader.setMat4("model", modelOp);
+			myShader.setVec3("miColor", glm::vec3(1.0f, 1.0f, 0.0f)); //amarillo
+			glDrawArrays(GL_TRIANGLES, 0, 36);
+		}
+		for (i = 0; i < 5; i++) {
+			modelOp = glm::translate(modelOp, glm::vec3(1.0f, 0.0f, 0.0f));
+			myShader.setMat4("model", modelOp);
+			myShader.setVec3("miColor", glm::vec3(0.0f, 0.0f, 0.0f)); //negro
+			glDrawArrays(GL_TRIANGLES, 0, 36);
+		}
+		for (i = 0; i < 3; i++) {
+			modelOp = glm::translate(modelOp, glm::vec3(1.0f, 0.0f, 0.0f));
+			myShader.setMat4("model", modelOp);
+			myShader.setVec3("miColor", glm::vec3(1.0f, 1.0f, 0.0f)); //amarillo
+			glDrawArrays(GL_TRIANGLES, 0, 36);
+		}
+		modelOp = glm::translate(modelOp, glm::vec3(1.0f, 0.0f, 0.0f));
+		myShader.setMat4("model", modelOp);
+		myShader.setVec3("miColor", glm::vec3(0.0f, 0.0f, 0.0f)); //negro
+		glDrawArrays(GL_TRIANGLES, 0, 36);
+
+		//14
+		modelOp = glm::translate(glm::mat4(1.0f), glm::vec3(-3.0f, -14.0f, 0.0f));
+		myShader.setMat4("model", modelOp);
+		myShader.setVec3("miColor", glm::vec3(0.0f, 0.0f, 0.0f)); //negro
+		glDrawArrays(GL_TRIANGLES, 0, 36);
+		for (i = 0; i < 9; i++) {
+			modelOp = glm::translate(modelOp, glm::vec3(1.0f, 0.0f, 0.0f));
+			myShader.setMat4("model", modelOp);
+			myShader.setVec3("miColor", glm::vec3(1.0f, 1.0f, 0.0f)); //amarillo
+			glDrawArrays(GL_TRIANGLES, 0, 36);
+		}
+		modelOp = glm::translate(modelOp, glm::vec3(1.0f, 0.0f, 0.0f));
+		myShader.setMat4("model", modelOp);
+		myShader.setVec3("miColor", glm::vec3(0.0f, 0.0f, 0.0f)); //negro
+		glDrawArrays(GL_TRIANGLES, 0, 36);
+
+		//15
+		modelOp = glm::translate(glm::mat4(1.0f), glm::vec3(-2.0f, -15.0f, 0.0f));
+		myShader.setMat4("model", modelOp);
+		myShader.setVec3("miColor", glm::vec3(0.0f, 0.0f, 0.0f)); //negro
+		glDrawArrays(GL_TRIANGLES, 0, 36);
+		modelOp = glm::translate(modelOp, glm::vec3(1.0f, 0.0f, 0.0f));
+		myShader.setMat4("model", modelOp);
+		glDrawArrays(GL_TRIANGLES, 0, 36);
+		for (i = 0; i < 5; i++) {
+			modelOp = glm::translate(modelOp, glm::vec3(1.0f, 0.0f, 0.0f));
+			myShader.setMat4("model", modelOp);
+			myShader.setVec3("miColor", glm::vec3(1.0f, 1.0f, 0.0f)); //amarillo
+			glDrawArrays(GL_TRIANGLES, 0, 36);
+		}
+		for (i = 0; i < 2; i++) {
+			modelOp = glm::translate(modelOp, glm::vec3(1.0f, 0.0f, 0.0f));
+			myShader.setMat4("model", modelOp);
+			myShader.setVec3("miColor", glm::vec3(0.0f, 0.0f, 0.0f)); //negro
+			glDrawArrays(GL_TRIANGLES, 0, 36);
+		}
+		//16
+		modelOp = glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, -16.0f, 0.0f));
+		myShader.setMat4("model", modelOp);
+		myShader.setVec3("miColor", glm::vec3(0.0f, 0.0f, 0.0f)); //negro
+		glDrawArrays(GL_TRIANGLES, 0, 36);
+		for (i = 0; i < 4; i++) {
+			modelOp = glm::translate(modelOp, glm::vec3(1.0f, 0.0f, 0.0f));
+			myShader.setMat4("model", modelOp);
+			myShader.setVec3("miColor", glm::vec3(0.0f, 0.0f, 0.0f)); //negro
+			glDrawArrays(GL_TRIANGLES, 0, 36);
+		}
+
+		
+
 
 		glBindVertexArray(0);
 		/*****************************************************************/
@@ -311,7 +666,7 @@ void my_input(GLFWwindow* window)
 	if (glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS)
 		movX -= 0.1f;
 	if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS)
-		movX += 0.1f;	
+		movX += 0.1f;
 	if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS)
 		movZ -= 0.1f;
 	if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS)
