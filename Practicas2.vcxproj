@@ -19,11 +19,11 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="main_prac03.cpp" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="shaders\shader_projection.fs" />
     <None Include="shaders\shader_projection.vs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main_prac04.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
