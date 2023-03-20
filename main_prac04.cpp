@@ -150,8 +150,18 @@ int main()
 	myShader.use();
 
 	glm::mat4 cuellosOp = glm::mat4(1.0f);	//nueva, inicia en el origen
-	glm::mat4 viewOp = glm::mat4(1.0f);			//Use this matrix for ALL models
+	glm::mat4 brazoizq = glm::mat4(1.0f);
+	glm::mat4 brazoder = glm::mat4(1.0f);
+	glm::mat4 espada = glm::mat4(1.0f);
+	glm::mat4 viewOp = glm::mat4(1.0f);	
+	glm::mat4 piernaizq  = glm::mat4(1.0f);
+	glm::mat4 piernader = glm::mat4(1.0f);	//Use this matrix for ALL models
 	glm::mat4 projectionOp = glm::mat4(1.0f);	//This matrix is for Projection
+	glm::mat4 pechoModel2 = glm::mat4(1.0f);
+	glm::mat4 cabezaModel2 = glm::mat4(1.0f);
+	glm::mat4 pechoModel3 = glm::mat4(1.0f);
+	glm::mat4 cuerpo3 = glm::mat4(1.0f);
+	glm::mat4 cabezaModel3 = glm::mat4(1.0f);
 
 	//Use "projection" in order to change how we see the information
 	projectionOp = glm::perspective(glm::radians(45.0f), (float)SCR_WIDTH / (float)SCR_HEIGHT, 0.1f, 100.0f);
@@ -166,13 +176,15 @@ int main()
 
         // render
         // Background color
-        glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
+        glClearColor(0.2f, 0.2f, 0.2f, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 		//Mi bloque de dibujo
 		/*******************************************/
 		glm::mat4 modelOp = glm::mat4(1.0f);		// initialize Matrix, Use this matrix for individual models
-		//Use "view" in order to affect all models
+		glm::mat4 modelOp2 = glm::mat4(1.0f);
+		glm::mat4 modelOp3 = glm::mat4(1.0f);
+		//Use "view" in order to affect all 
 		viewOp = glm::translate(glm::mat4(1.0f), glm::vec3(movX, movY, movZ));
 		viewOp = glm::rotate(viewOp, glm::radians(anguloX), glm::vec3(1.0f, 0.0f, 0.0f));
 		viewOp = glm::rotate(viewOp, glm::radians(anguloY), glm::vec3(0.0f, 1.0f, 0.0f));
@@ -209,16 +221,233 @@ int main()
 		myShader.setVec3("aColor", glm::vec3(0.0f, 0.0f, 1.0f));
 		glDrawArrays(GL_TRIANGLES, 0, 36);
 
-		modelOp = glm::translate(glm::mat4(1.0f), glm::vec3(2.75f, 2.25f, 0.0f)); //brazo izq
+		brazoder = modelOp = glm::translate(glm::mat4(1.0f), glm::vec3(2.75f, 2.25f, 0.0f)); //brazo der
 		modelOp = glm::scale(modelOp, glm::vec3(1.5f, 0.5f, 1.0f));
 		myShader.setMat4("model", modelOp);
 		myShader.setVec3("aColor", glm::vec3(1.0f, 0.0f, 1.0f));
 		glDrawArrays(GL_TRIANGLES, 0, 36);
 
-		modelOp = glm::translate(glm::mat4(1.0f), glm::vec3(-2.75f, 2.25f, 0.0f)); //brazo izq
+		modelOp = glm::translate(brazoder, glm::vec3(0.25f, -2.0f, 0.0f)); //brazo der
+		modelOp = glm::scale(modelOp, glm::vec3(1.0f, 3.5f, 1.0f));
+		myShader.setMat4("model", modelOp);
+		myShader.setVec3("aColor", glm::vec3(1.0f, 0.5f, 0.0f));
+		glDrawArrays(GL_TRIANGLES, 0, 36);
+
+		espada = modelOp = glm::translate(brazoder, glm::vec3(0.25f, -3.9f, 0.0f)); //espada
+		modelOp = glm::scale(modelOp, glm::vec3(1.0f, 0.3f, 1.0f));
+		myShader.setMat4("model", modelOp);
+		myShader.setVec3("aColor", glm::vec3(0.0f, 1.0f, 0.0f));
+		glDrawArrays(GL_TRIANGLES, 0, 36);
+
+		modelOp = glm::translate(espada, glm::vec3(0.55f, 0.0f, 0.0f)); //espada
+		modelOp = glm::scale(modelOp, glm::vec3(0.3f, 0.6f, 1.0f));
+		myShader.setMat4("model", modelOp);
+		myShader.setVec3("aColor", glm::vec3(0.0f, 1.0f, 0.0f));
+		glDrawArrays(GL_TRIANGLES, 0, 36);
+
+		modelOp = glm::translate(espada, glm::vec3(2.5f, 0.0f, 0.0f)); //espada
+		modelOp = glm::scale(modelOp, glm::vec3(3.5f, 0.3f, 1.0f));
+		myShader.setMat4("model", modelOp);
+		myShader.setVec3("aColor", glm::vec3(0.0f, 1.0f, 0.0f));
+		glDrawArrays(GL_TRIANGLES, 0, 36);
+
+		brazoizq= modelOp = glm::translate(glm::mat4(1.0f), glm::vec3(-2.75f, 2.25f, 0.0f)); //brazo izq
 		modelOp = glm::scale(modelOp, glm::vec3(1.5f, 0.5f, 1.0f));
 		myShader.setMat4("model", modelOp);
 		myShader.setVec3("aColor", glm::vec3(1.0f, 0.0f, 1.0f));
+		glDrawArrays(GL_TRIANGLES, 0, 36);
+
+		modelOp = glm::translate(brazoizq, glm::vec3(-0.25f, -2.0f, 0.0f)); //brazo izq
+		modelOp = glm::scale(modelOp, glm::vec3(1.0f, 3.5f, 1.0f));
+		myShader.setMat4("model", modelOp);
+		myShader.setVec3("aColor", glm::vec3(1.0f, 0.5f, 0.0f));
+		glDrawArrays(GL_TRIANGLES, 0, 36);
+
+		piernader = modelOp = glm::translate(glm::mat4(1.0f), glm::vec3(1.25f, -5.25f, 0.0f)); //pierna der
+		modelOp = glm::scale(modelOp, glm::vec3(1.5f, 3.5f, 1.0f));
+		myShader.setMat4("model", modelOp);
+		myShader.setVec3("aColor", glm::vec3(1.0f, 0.0f, 1.0f));
+		glDrawArrays(GL_TRIANGLES, 0, 36);
+
+		modelOp = glm::translate(piernader, glm::vec3(0.5f, -2.125f, 0.0f)); //pie der
+		modelOp = glm::scale(modelOp, glm::vec3(2.5f, 0.75f, 1.0f));
+		myShader.setMat4("model", modelOp);
+		myShader.setVec3("aColor", glm::vec3(1.0f, 0.0f, 0.0f));
+		glDrawArrays(GL_TRIANGLES, 0, 36);
+
+		piernaizq = modelOp = glm::translate(glm::mat4(1.0f), glm::vec3(-1.25f, -5.25f, 0.0f)); //pierna izq
+		modelOp = glm::scale(modelOp, glm::vec3(1.5f, 3.5f, 1.0f));
+		myShader.setMat4("model", modelOp);
+		myShader.setVec3("aColor", glm::vec3(1.0f, 0.0f, 1.0f));
+		glDrawArrays(GL_TRIANGLES, 0, 36);
+
+		modelOp = glm::translate(piernaizq, glm::vec3(-0.5f, -2.125f, 0.0f)); //pie izq
+		modelOp = glm::scale(modelOp, glm::vec3(2.5f, 0.75f, 1.0f));
+		myShader.setMat4("model", modelOp);
+		myShader.setVec3("aColor", glm::vec3(1.0f, 0.0f, 0.0f));
+		glDrawArrays(GL_TRIANGLES, 0, 36);
+
+		///
+		pechoModel2 = modelOp2 = glm::translate(glm::mat4(1.0f), glm::vec3(9.0f, 3.0f, 1.0f)); //pecho origen el centro del pecho
+		modelOp2 = glm::scale(modelOp2, glm::vec3(3.0f, 4.0f, 1.0f));
+		myShader.setMat4("model", modelOp2);
+		myShader.setVec3("aColor", glm::vec3(0.0f, 0.0f, 0.0f));
+		glDrawArrays(GL_TRIANGLES, 0, 36);
+
+		modelOp2 = glm::translate(pechoModel2, glm::vec3(0.0f, 2.25f, 0.0f)); //cuello negro
+		modelOp2 = glm::scale(modelOp2, glm::vec3(0.5f, 0.5f, 1.0f));
+		myShader.setMat4("model", modelOp2);
+		glDrawArrays(GL_TRIANGLES, 0, 36);
+
+		cabezaModel2 = modelOp2 = glm::translate(pechoModel2, glm::vec3(0.0f, 3.5f, 0.0f)); //cabeza negro
+		modelOp2 = glm::scale(modelOp2, glm::vec3(2.0f, 2.0f, 1.0f));
+		myShader.setMat4("model", modelOp2);
+		glDrawArrays(GL_TRIANGLES, 0, 36);
+
+		modelOp2 = glm::translate(cabezaModel2, glm::vec3(0.5f, 0.25f, 0.1f)); //ojos
+		modelOp2 = glm::scale(modelOp2, glm::vec3(0.75f, 0.5f, 1.0f));
+		myShader.setMat4("model", modelOp2);
+		myShader.setVec3("aColor", glm::vec3(1.0f, 0.0f, 1.0f));
+		glDrawArrays(GL_TRIANGLES, 0, 36);
+
+		modelOp2 = glm::translate(cabezaModel2, glm::vec3(0.5f, 0.25f, 0.2f)); //ojos
+		modelOp2 = glm::scale(modelOp2, glm::vec3(0.4f, 0.4f, 1.0f));
+		myShader.setMat4("model", modelOp2);
+		myShader.setVec3("aColor", glm::vec3(0.1f, 0.0f, 0.4f));
+		glDrawArrays(GL_TRIANGLES, 0, 36);
+
+		modelOp2 = glm::translate(cabezaModel2, glm::vec3(-0.5f, 0.25f, 0.1f)); //ojos
+		modelOp2 = glm::scale(modelOp2, glm::vec3(0.75f, 0.5f, 1.0f));
+		myShader.setMat4("model", modelOp2);
+		myShader.setVec3("aColor", glm::vec3(1.0f, 0.0f, 1.0f));
+		glDrawArrays(GL_TRIANGLES, 0, 36);
+
+		modelOp2 = glm::translate(cabezaModel2, glm::vec3(-0.5f, 0.25f, 0.2f)); //ojos
+		modelOp2 = glm::scale(modelOp2, glm::vec3(0.4f, 0.4f, 1.0f));
+		myShader.setMat4("model", modelOp2);
+		myShader.setVec3("aColor", glm::vec3(0.1f, 0.0f, 0.4f));
+		glDrawArrays(GL_TRIANGLES, 0, 36);
+
+		modelOp2 = glm::translate(pechoModel2, glm::vec3(1.75f, 1.75f, 0.0f)); //brazo der
+		modelOp2 = glm::scale(modelOp2, glm::vec3(0.25f, 0.25f, 1.0f));
+		myShader.setMat4("model", modelOp2);
+		myShader.setVec3("aColor", glm::vec3(0.0f, 0.0f, 0.0f));
+		glDrawArrays(GL_TRIANGLES, 0, 36);
+
+		modelOp2 = glm::translate(pechoModel2, glm::vec3(2.0f, -1.0f, 0.0f)); //brazo der
+		modelOp2 = glm::scale(modelOp2, glm::vec3(0.5f, 6.0f, 1.0f));
+		myShader.setMat4("model", modelOp2);
+		glDrawArrays(GL_TRIANGLES, 0, 36);
+
+		modelOp2 = glm::translate(pechoModel2, glm::vec3(-1.75f, 1.75f, 0.0f)); //brazo izq
+		modelOp2 = glm::scale(modelOp2, glm::vec3(0.25f, 0.25f, 1.0f));
+		myShader.setMat4("model", modelOp2);
+		glDrawArrays(GL_TRIANGLES, 0, 36);
+
+		modelOp2 = glm::translate(pechoModel2, glm::vec3(-2.0f, -1.0f, 0.0f)); //brazo izq
+		modelOp2 = glm::scale(modelOp2, glm::vec3(0.5f, 6.0f, 1.0f));
+		myShader.setMat4("model", modelOp2);
+		glDrawArrays(GL_TRIANGLES, 0, 36);
+
+		modelOp2 = glm::translate(pechoModel2, glm::vec3(-1.0f, -5.5f, 0.0f)); //pierna 
+		modelOp2 = glm::scale(modelOp2, glm::vec3(0.5f, 7.0f, 1.0f));
+		myShader.setMat4("model", modelOp2);
+		glDrawArrays(GL_TRIANGLES, 0, 36);
+
+		modelOp2 = glm::translate(pechoModel2, glm::vec3(1.0f, -5.5f, 0.0f)); //pierna 
+		modelOp2 = glm::scale(modelOp2, glm::vec3(0.5f, 7.0f, 1.0f));
+		myShader.setMat4("model", modelOp2);
+		glDrawArrays(GL_TRIANGLES, 0, 36);
+
+
+		/// FIGURA 3 
+		pechoModel3 = modelOp3 = glm::translate(glm::mat4(1.0f), glm::vec3(-10.0f, 0.0f, 0.0f)); //pecho origen el centro del pecho
+		modelOp3 = glm::scale(modelOp3, glm::vec3(3.0f, 3.5f, 1.0f));
+		myShader.setMat4("model", modelOp3);
+		myShader.setVec3("aColor", glm::vec3(0.0f, 1.0f, 1.0f));
+		glDrawArrays(GL_TRIANGLES, 0, 36);
+
+		modelOp3 = glm::translate(pechoModel3, glm::vec3(0.0f, 2.0f, 0.1f)); //cuello
+		modelOp3 = glm::scale(modelOp3, glm::vec3(0.5f, 0.5f, 1.0f));
+		myShader.setMat4("model", modelOp3);
+		myShader.setVec3("aColor", glm::vec3(0.0f, 0.7f, 0.0f));
+		glDrawArrays(GL_TRIANGLES, 0, 36);
+
+		cabezaModel3 = modelOp3 = glm::translate(pechoModel3, glm::vec3(0.0f, 3.0f, 0.0f)); //cabeza
+		modelOp3 = glm::scale(modelOp3, glm::vec3(2.0f, 2.0f, 1.0f));
+		myShader.setMat4("model", modelOp3);
+		myShader.setVec3("aColor", glm::vec3(0.0f, 0.7f, 0.0f));
+		glDrawArrays(GL_TRIANGLES, 0, 36);
+
+		modelOp3 = glm::translate(cabezaModel3, glm::vec3(0.5f, 0.25f, 0.1f)); //ojos
+		modelOp3 = glm::scale(modelOp3, glm::vec3(0.4f, 0.4f, 1.0f));
+		myShader.setMat4("model", modelOp3);
+		myShader.setVec3("aColor", glm::vec3(0.0f, 0.0f, 0.0f));
+		glDrawArrays(GL_TRIANGLES, 0, 36);
+
+		modelOp3 = glm::translate(cabezaModel3, glm::vec3(-0.5f, 0.25f, 0.1f)); //ojos
+		modelOp3 = glm::scale(modelOp3, glm::vec3(0.4f, 0.4f, 1.0f));
+		myShader.setMat4("model", modelOp3);
+		glDrawArrays(GL_TRIANGLES, 0, 36);
+
+		modelOp3 = glm::translate(cabezaModel3, glm::vec3(0.0f, -0.25f, 0.1f)); //nariz
+		modelOp3 = glm::scale(modelOp3, glm::vec3(0.4f, 0.4f, 1.0f));
+		myShader.setMat4("model", modelOp3);
+		myShader.setVec3("aColor", glm::vec3(0.0f, 0.3f, 0.0f));
+		glDrawArrays(GL_TRIANGLES, 0, 36);
+
+		modelOp3 = glm::translate(glm::mat4(1.0f), glm::vec3(-8.0f, 0.8f, 0.0f)); //brazo der
+		modelOp3 = glm::scale(modelOp3, glm::vec3(1.0f, 1.8f, 1.0f));
+		myShader.setMat4("model", modelOp3);
+		myShader.setVec3("aColor", glm::vec3(0.0f, 1.0f, 1.0f));
+		glDrawArrays(GL_TRIANGLES, 0, 36);
+
+		modelOp3 = glm::translate(glm::mat4(1.0f), glm::vec3(-8.0f, -0.8f, 0.0f)); //brazo der
+		modelOp3 = glm::scale(modelOp3, glm::vec3(1.0f, 1.8f, 1.0f));
+		myShader.setMat4("model", modelOp3);
+		myShader.setVec3("aColor", glm::vec3(0.0f, 0.7f, 0.0f));
+		glDrawArrays(GL_TRIANGLES, 0, 36);
+
+		modelOp3 = glm::translate(glm::mat4(1.0f), glm::vec3(-12.0f, 0.8f, 0.0f)); //brazo izq
+		modelOp3 = glm::scale(modelOp3, glm::vec3(1.0f, 1.8f, 1.0f));
+		myShader.setMat4("model", modelOp3);
+		myShader.setVec3("aColor", glm::vec3(0.0f, 1.0f,1.0f));
+		glDrawArrays(GL_TRIANGLES, 0, 36);
+
+		modelOp3 = glm::translate(glm::mat4(1.0f), glm::vec3(-12.0f, -0.8f, 0.0f)); //brazo izq
+		modelOp3 = glm::scale(modelOp3, glm::vec3(1.0f, 1.8f, 1.0f));
+		myShader.setMat4("model", modelOp3);
+		myShader.setVec3("aColor", glm::vec3(0.0f, 0.7f, 0.0f));
+		glDrawArrays(GL_TRIANGLES, 0, 36);
+
+		cuerpo3 = modelOp3 = glm::translate(glm::mat4(1.0f), glm::vec3(-10.0f, -2.0f, 0.0f)); //cuerpo
+		modelOp3 = glm::scale(modelOp3, glm::vec3(3.0f, 0.5f, 1.0f));
+		myShader.setMat4("model", modelOp3);
+		myShader.setVec3("aColor", glm::vec3(0.0f, 0.1f, 1.0f));
+		glDrawArrays(GL_TRIANGLES, 0, 36);
+
+		modelOp3 = glm::translate(cuerpo3, glm::vec3(0.75f, -2.25f, 0.0f)); //pierna der
+		modelOp3 = glm::scale(modelOp3, glm::vec3(1.5f, 4.0f, 1.0f));
+		myShader.setMat4("model", modelOp3);
+		myShader.setVec3("aColor", glm::vec3(0.0f, 0.0f, 0.8f));
+		glDrawArrays(GL_TRIANGLES, 0, 36);
+
+		modelOp3 = glm::translate(cuerpo3, glm::vec3(0.75f, -4.5f, 0.0f)); //zapato der
+		modelOp3 = glm::scale(modelOp3, glm::vec3(1.5f, 0.75f, 1.0f));
+		myShader.setMat4("model", modelOp3);
+		myShader.setVec3("aColor", glm::vec3(0.1f, 0.1f, 0.1f));
+		glDrawArrays(GL_TRIANGLES, 0, 36);
+
+		modelOp3 = glm::translate(cuerpo3, glm::vec3(-0.75f, -2.25f, 0.0f)); //pierna izq
+		modelOp3 = glm::scale(modelOp3, glm::vec3(1.5f, 4.0f, 1.0f));
+		myShader.setMat4("model", modelOp3);
+		myShader.setVec3("aColor", glm::vec3(0.0f, 0.0f, 0.9f));
+		glDrawArrays(GL_TRIANGLES, 0, 36);
+
+		modelOp3 = glm::translate(cuerpo3, glm::vec3(-0.75f, -4.5f, 0.0f)); //zapato izq
+		modelOp3 = glm::scale(modelOp3, glm::vec3(1.5f, 0.75f, 1.0f));
+		myShader.setMat4("model", modelOp3);
+		myShader.setVec3("aColor", glm::vec3(0.1f, 0.1f, 0.1f));
 		glDrawArrays(GL_TRIANGLES, 0, 36);
 
 		glBindVertexArray(0);
@@ -253,17 +482,17 @@ void my_input(GLFWwindow *window)
 	if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS)
 		movZ += 0.08f;
 	if (glfwGetKey(window, GLFW_KEY_UP) == GLFW_PRESS)
-		anguloX -= 1.5f;
+		anguloX -= 0.5f;
 	if (glfwGetKey(window, GLFW_KEY_DOWN) == GLFW_PRESS)
-		anguloX += 1.5f;
+		anguloX += 0.5f;
 	if (glfwGetKey(window, GLFW_KEY_LEFT) == GLFW_PRESS)
-		anguloY -= 1.5f;
+		anguloY -= 0.5f;
 	if (glfwGetKey(window, GLFW_KEY_RIGHT) == GLFW_PRESS)
-		anguloY += 1.5f;
+		anguloY += 0.5f;
 	if (glfwGetKey(window, GLFW_KEY_HOME) == GLFW_PRESS)
-		anguloZ -= 1.5f;
+		anguloZ -= 0.5f;
 	if (glfwGetKey(window, GLFW_KEY_END) == GLFW_PRESS)
-		anguloZ += 1.5f;
+		anguloZ += 0.5f;
 }
 
 // glfw: whenever the window size changed (by OS or user resize) this callback function executes
