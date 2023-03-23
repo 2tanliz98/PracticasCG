@@ -23,7 +23,7 @@
     <None Include="shaders\shader_projection.vs" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="main_prac04.cpp" />
+    <ClCompile Include="main_prac05.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
