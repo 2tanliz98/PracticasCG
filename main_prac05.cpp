@@ -262,14 +262,14 @@ int main()
 		glDrawArrays(GL_TRIANGLES, 0, 36);
 
 		modelOp = glm::translate(tempB, glm::vec3(1.25f, -0.35f, 0.325f)); //pulgar
-		modelOp = glm::rotate(modelOp, glm::radians(rot_dedo1_p1), glm::vec3(0.0f, 0.0f, 1.0f));
+		modelOp = glm::rotate(modelOp, glm::radians(rot_dedo2_p1), glm::vec3(0.0f, 0.0f, 1.0f));
 		tempI = modelOp = glm::translate(modelOp, glm::vec3(0.25f, 0.0f, 0.0f));
 		modelOp = glm::scale(modelOp, glm::vec3(0.5f, 0.3f, 0.25f));
 		myShader.setMat4("model", modelOp);
 		myShader.setVec3("aColor", glm::vec3(0.0f, 1.0f, 0.0f));
 		glDrawArrays(GL_TRIANGLES, 0, 36);	//Dibujo de elemento
-		modelOp = glm::translate(tempI, glm::vec3(0.125f, 0.0f, 0.0f)); //dedo 1 p2
-		modelOp = glm::rotate(modelOp, glm::radians(rot_dedo1_p2), glm::vec3(0.0f, 0.0f, 1.0f));
+		modelOp = glm::translate(tempI, glm::vec3(0.125f, 0.0f, 0.0f)); //dedo pulgar p2
+		modelOp = glm::rotate(modelOp, glm::radians(rot_dedo2_p2), glm::vec3(0.0f, 0.0f, 1.0f));
 		modelOp = glm::translate(modelOp, glm::vec3(0.5f, 0.0f, 0.0f));
 		modelOp = glm::scale(modelOp, glm::vec3(0.75f, 0.3f, 0.25f));
 		myShader.setMat4("model", modelOp);
@@ -296,42 +296,46 @@ void my_input(GLFWwindow *window)
     if(glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)  //GLFW_RELEASE
         glfwSetWindowShouldClose(window, true);
 	if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS)
-		movX += 1.0f;
+		movX += 0.3f;
 	if (glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS)
-		movX -= 1.0f;
+		movX -= 0.3f;
 	if (glfwGetKey(window, GLFW_KEY_PAGE_UP) == GLFW_PRESS)
-		movY += 1.0f;
+		movY += 0.3f;
 	if (glfwGetKey(window, GLFW_KEY_PAGE_DOWN) == GLFW_PRESS)
-		movY -= 1.0f;
+		movY -= 0.3f;
 	if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS)
-		movZ -= 1.0f;
+		movZ -= 0.3f;
 	if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS)
-		movZ += 1.0f;
+		movZ += 0.3f;
 	if (glfwGetKey(window, GLFW_KEY_LEFT) == GLFW_PRESS)
-		rotY += 1.0f;
+		rotY += 0.3f;
 	if (glfwGetKey(window, GLFW_KEY_RIGHT) == GLFW_PRESS)
-		rotY -= 1.0f;
+		rotY -= 0.3f;
 	if (glfwGetKey(window, GLFW_KEY_UP) == GLFW_PRESS)
-		rotX += 1.0f;
+		rotX += 0.3f;
 	if (glfwGetKey(window, GLFW_KEY_DOWN) == GLFW_PRESS)
-		rotX -= 1.0f;
+		rotX -= 0.3f;
 
-	if (glfwGetKey(window, GLFW_KEY_R) == GLFW_PRESS && rot_hombro < 90.0f )
-		rot_hombro += 1.0f;
+	if (glfwGetKey(window, GLFW_KEY_R) == GLFW_PRESS && rot_hombro < 90.0f)
+		rot_hombro += 0.3f;
 	if (glfwGetKey(window, GLFW_KEY_F) == GLFW_PRESS && rot_hombro > - 110.0f)
-		rot_hombro -= 1.0f;
+		rot_hombro -= 0.3f;
 	if (glfwGetKey(window, GLFW_KEY_T) == GLFW_PRESS && rot_codo < 120.0f)
-		rot_codo += 1.0f;
+		rot_codo += 0.3f;
 	if (glfwGetKey(window, GLFW_KEY_G) == GLFW_PRESS && rot_codo > -5.0f)
-		rot_codo -= 1.0f;
+		rot_codo -= 0.3f;
 	if (glfwGetKey(window, GLFW_KEY_Y) == GLFW_PRESS && rot_dedo1_p1 > -90.0f)
-		rot_dedo1_p1 -= 1.0f;
+		rot_dedo1_p1 -= 0.3f;
 	if (glfwGetKey(window, GLFW_KEY_H) == GLFW_PRESS && rot_dedo1_p1 < 5.0f)
-		rot_dedo1_p1 += 1.0f;
+		rot_dedo1_p1 += 0.3f;
 	if (glfwGetKey(window, GLFW_KEY_U) == GLFW_PRESS && rot_dedo1_p2 > -45.0f)
-		rot_dedo1_p2 -= 1.0f;
+		rot_dedo1_p2 -= 0.3f;
 	if (glfwGetKey(window, GLFW_KEY_J) == GLFW_PRESS && rot_dedo1_p2 < 5.0f)
-		rot_dedo1_p2 += 1.0f;
+		rot_dedo1_p2 += 0.3f;
+	if (glfwGetKey(window, GLFW_KEY_I) == GLFW_PRESS && rot_dedo2_p2 > 5.0f)
+		rot_dedo2_p2 -= 0.3f;
+	if (glfwGetKey(window, GLFW_KEY_K) == GLFW_PRESS && rot_dedo2_p2 <45.0f)
+		rot_dedo2_p2 += 0.3f;
 }
 
 // glfw: whenever the window size changed (by OS or user resize) this callback function executes
