@@ -23,8 +23,13 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="main_prac05.cpp">
+    <ClCompile Include="main_prac06.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="camera.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
